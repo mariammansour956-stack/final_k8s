@@ -1,0 +1,297 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dashboard-html
+  namespace: banking
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Banking Platform Dashboard</title>
+      <style>
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        body {
+          font-family: Arial, sans-serif;
+          background: linear-gradient(135deg, #eef4ff, #f8fbff);
+          color: #1e293b;
+          min-height: 100vh;
+          padding: 30px 20px;
+        }
+
+        .container {
+          max-width: 1100px;
+          margin: 0 auto;
+        }
+
+        .hero {
+          background: linear-gradient(135deg, #2563eb, #1d4ed8);
+          color: white;
+          padding: 28px;
+          border-radius: 18px;
+          box-shadow: 0 10px 30px rgba(37, 99, 235, 0.25);
+          margin-bottom: 24px;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+          margin-bottom: 8px;
+        }
+
+        .hero p {
+          opacity: 0.95;
+          font-size: 1rem;
+        }
+
+        .hero .meta {
+          margin-top: 16px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+
+        .badge {
+          background: rgba(255, 255, 255, 0.18);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          padding: 8px 14px;
+          border-radius: 999px;
+          font-size: 0.9rem;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+          gap: 18px;
+          margin-bottom: 22px;
+        }
+
+        .card {
+          background: white;
+          border-radius: 16px;
+          padding: 22px;
+          box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+          border: 1px solid #e5e7eb;
+        }
+
+        .card h3 {
+          font-size: 0.95rem;
+          color: #64748b;
+          margin-bottom: 12px;
+          font-weight: 600;
+        }
+
+        .card .value {
+          font-size: 1.6rem;
+          font-weight: 700;
+          color: #0f172a;
+        }
+
+        .card .sub {
+          margin-top: 8px;
+          font-size: 0.92rem;
+          color: #475569;
+        }
+
+        .section {
+          background: white;
+          border-radius: 18px;
+          padding: 24px;
+          box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+          border: 1px solid #e5e7eb;
+          margin-bottom: 22px;
+        }
+
+        .section h2 {
+          font-size: 1.5rem;
+          margin-bottom: 18px;
+          color: #0f172a;
+        }
+
+        .transactions {
+          list-style: none;
+          display: grid;
+          gap: 14px;
+        }
+
+        .transaction {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 16px 18px;
+          border-radius: 14px;
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+        }
+
+        .transaction-left {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .transaction-title {
+          font-weight: 600;
+          color: #0f172a;
+        }
+
+        .transaction-date {
+          font-size: 0.88rem;
+          color: #64748b;
+        }
+
+        .amount {
+          font-weight: 700;
+          font-size: 1rem;
+        }
+
+        .amount.positive {
+          color: #16a34a;
+        }
+
+        .amount.negative {
+          color: #dc2626;
+        }
+
+        .footer-grid {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          gap: 18px;
+        }
+
+        .status-box {
+          background: #ecfdf5;
+          border: 1px solid #bbf7d0;
+          border-left: 6px solid #16a34a;
+        }
+
+        .status-box p {
+          line-height: 1.7;
+        }
+
+        .api-box {
+          background: #eff6ff;
+          border: 1px solid #bfdbfe;
+          border-left: 6px solid #2563eb;
+        }
+
+        code {
+          background: #e2e8f0;
+          padding: 3px 8px;
+          border-radius: 8px;
+          font-size: 0.92rem;
+        }
+
+        @media (max-width: 768px) {
+          .footer-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .hero h1 {
+            font-size: 1.6rem;
+          }
+
+          .card .value {
+            font-size: 1.3rem;
+          }
+
+          .transaction {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+          }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="hero">
+          <h1>🏦 Banking Platform Dashboard</h1>
+          <p>Kubernetes Demo Project running with Deployments, Services, Ingress, RBAC, NetworkPolicy, PostgreSQL, and HPA.</p>
+          <div class="meta">
+            <span class="badge">Cluster: Minikube</span>
+            <span class="badge">Namespace: banking</span>
+            <span class="badge">Environment: Demo</span>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Account Holder</h3>
+            <div class="value">İbrahim Ashraf</div>
+            <div class="sub">Premium banking customer</div>
+          </div>
+
+          <div class="card">
+            <h3>Current Balance</h3>
+            <div class="value">$12,450.00</div>
+            <div class="sub">Last updated just now</div>
+          </div>
+
+          <div class="card">
+            <h3>Account Type</h3>
+            <div class="value">Premium</div>
+            <div class="sub">Checking Account</div>
+          </div>
+
+          <div class="card">
+            <h3>API Status</h3>
+            <div class="value">Online</div>
+            <div class="sub">Service reachable through Ingress</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Recent Transactions</h2>
+          <ul class="transactions">
+            <li class="transaction">
+              <div class="transaction-left">
+                <span class="transaction-title">Amazon Purchase</span>
+                <span class="transaction-date">Today • Card Payment</span>
+              </div>
+              <span class="amount negative">-$120.00</span>
+            </li>
+
+            <li class="transaction">
+              <div class="transaction-left">
+                <span class="transaction-title">Salary Deposit</span>
+                <span class="transaction-date">Today • Incoming Transfer</span>
+              </div>
+              <span class="amount positive">+$2,500.00</span>
+            </li>
+
+            <li class="transaction">
+              <div class="transaction-left">
+                <span class="transaction-title">Electricity Bill</span>
+                <span class="transaction-date">Yesterday • Utility Payment</span>
+              </div>
+              <span class="amount negative">-$75.00</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-grid">
+          <div class="section status-box">
+            <h2>Project Status</h2>
+            <p>
+              The Kubernetes stack is configured successfully:
+              Dashboard, API, PostgreSQL, Ingress, RBAC, NetworkPolicy,
+              Metrics Server, and HPA are all in place.
+            </p>
+          </div>
+
+          <div class="section api-box">
+            <h2>API Endpoint</h2>
+            <p>Try the mock API here:</p>
+            <p style="margin-top: 12px;"><code>/api</code></p>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>
